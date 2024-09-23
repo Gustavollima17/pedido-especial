@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Especial</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6f2;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #ff66b3;
+            font-size: 2.5em;
+            animation: pulse 1s infinite;
+        }
+
+        p {
+            font-size: 1.5em;
+            color: #ff1a75;
+        }
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-around;
+            width: 60%;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        #btn-yes {
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 0 20px 2px #4CAF50;
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        #btn-no {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+            box-shadow: 0 0 20px 2px #f44336;
+        }
+
+        /* Animações */
+        @keyframes moveButton {
+            0% { left: 0px; top: 0px; }
+            25% { left: 100px; top: -30px; }
+            50% { left: -100px; top: 30px; }
+            75% { left: 150px; top: -30px; }
+            100% { left: 0px; top: 0px; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px #4CAF50; }
+            100% { box-shadow: 0 0 40px #4CAF50; }
+        }
+
+        #hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff66b3;
+            clip-path: polygon(50% 0%, 100% 35%, 75% 100%, 50% 75%, 25% 100%, 0% 35%);
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-100vh); }
+        }
+
+        /* Música escondida */
+        #music {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pedido fofo para conhecer a Láysa Everton -->
+    <div>
+        <h1>Oi Láysa Everton!</h1>
+        <p>Gostaria muito de te conhecer melhor. A senhorita aceita? 😍</p>
+
+        <div class="buttons">
+            <!-- Botão SIM -->
+            <button id="btn-yes">Sim</button>
+            
+            <!-- Botão NÃO -->
+            <button id="btn-no">Não</button>
+        </div>
+    </div>
+
+    <!-- Corações flutuantes de fundo -->
+    <div id="hearts"></div>
+
+    <!-- Áudio de Tim Maia (caminho atualizado para o arquivo) -->
+    <audio id="music" controls>
+        <source src="/mnt/data/tim-maia-eu-amo-voce.mp3" type="audio/mpeg">
+        Seu navegador não suporta o áudio.
+    </audio>
+
+    <script>
+        // Função para adicionar corações flutuando no fundo
+        function createHearts() {
+            const hearts = document.getElementById('hearts');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 5 + 3 + 's';
+                hearts.appendChild(heart);
+            }
+        }
+
+        createHearts();
+
+        // Função ao clicar no botão "Sim"
+        document.getElementById('btn-yes').onclick = function() {
+            // Toca a música do Tim Maia
+            var music = document.getElementById('music');
+            music.style.display = 'block';
+            music.play();
+            alert("Que ótimo! Vamos marcar algo! 💖");
+        };
+
+        // Função ao tentar clicar no botão "Não"
+        document.getElementById('btn-no').onmouseover = function() {
+            // Movimenta o botão "Não" para que ela não consiga clicar
+            this.style.animation = "moveButton 0.5s ease infinite";
+        };
+
+        document.getElementById('btn-no').onmouseleave = function() {
+            // Para a animação quando o mouse sai do botão
+            this.style.animation = "none";
+        };
+    </script>
+
+</body>
+</html>
