@@ -131,10 +131,11 @@
     <div id="hearts"></div>
 
     <!-- Vídeo que será exibido após o "Sim" -->
-    <video id="video" width="600" controls>
-        <source src="https://youtu.be/qBBwXuEV4jA?si=VkfoITKd6yzcEAyv.mp4" type="video/mp4">
-        Seu navegador não suporta o vídeo.
-    </video>
+    <div id="video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/qBBwXuEV4jA?si=VkfoITKd6yzcEAyv&amp;start=238" 
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
 
     <script>
         // Função para adicionar corações flutuando no fundo
@@ -156,7 +157,6 @@
             // Exibe e reproduz o vídeo
             var video = document.getElementById('video');
             video.style.display = 'block';
-            video.play();
             alert("Que ótimo! Vamos marcar algo! 💖");
         };
 
